@@ -133,7 +133,7 @@ def main():
 
     bot = Trader(
         ticker="GOOG",
-        start="2025-01-01",
+        start="2023-01-01",
         end="2025-12-01",
         sma=10,
         lma=50
