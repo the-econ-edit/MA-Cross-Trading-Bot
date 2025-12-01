@@ -13,7 +13,7 @@ class DataHandler:
         data = data[["Close"]]
 
         if isinstance(data.columns, pd.MultiIndex):
-            data.columns = [col[0] for col in data.columns]  # take only the OHLCV names
+            data.columns = [col[0] for col in data.columns]  
 
         data.dropna(inplace=True)
         self.data = data 
@@ -75,12 +75,10 @@ class Backtester:
             elif trade == "sell" and self.position == 1:
                 exit_price = row["Close"]
                 
-                # FIX #1 — sell should add shares * exit_price (your logic but corrected)
                 self.balance += self.shares * exit_price
 
                 self.trade_history.append((date, "SELL", exit_price, self.shares))
 
-                # FIX #2 — remove duplicate self.position = 0 and clean reset
                 self.position = 0
                 self.shares = 0
                 self.entry_price = None
@@ -89,7 +87,6 @@ class Backtester:
         if self.position == 1:
             exit_price = ds["Close"].iloc[-1]
 
-            # FIX #3 — use shares * price instead of incorrect "profit = exit - entry"
             self.balance += self.shares * exit_price
 
             self.trade_history.append((ds.index[-1], "SELL", exit_price, self.shares))
