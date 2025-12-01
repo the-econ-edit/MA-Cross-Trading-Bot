@@ -50,7 +50,7 @@ class Strategy:
 
 
 class Backtester:
-    def __init__(self, data, initial_balance=500):
+    def __init__(self, data, initial_balance=500): # EDIT STARTING BALANCE HERE
         self.data = data
         self.balance = initial_balance
         self.position = 0
@@ -130,7 +130,7 @@ class Trader:
 
 
 def main():
-
+ # EDIT TICKER AND STRAT HERE
     bot = Trader(
         ticker="GOOG",
         start="2023-01-01",
